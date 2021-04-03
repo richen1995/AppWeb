@@ -38,7 +38,7 @@
     <build>
         <plugins>
                 <!--plugin para heroku-->
-                <plugin>
+<!--                <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
                         <version>2.3</version>
@@ -60,8 +60,13 @@
                                         </configuration>
                                 </execution>
                         </executions>
-                </plugin>
+                </plugin>-->
             
+                <plugin><!--Complemento maven segun documentacion de heroku -> https://devcenter.heroku.com/articles/deploying-java-applications-with-the-heroku-maven-plugin -->
+                  <groupId>com.heroku.sdk</groupId>
+                  <artifactId>heroku-maven-plugin</artifactId>
+                  <version>3.0.3</version>
+                </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
