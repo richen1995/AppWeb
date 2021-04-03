@@ -18,7 +18,7 @@
       <!--<property name="URL" value="jdbc:postgresql://ec2-18-233-83-165.compute-1.amazonaws.com:5432/d4sh0ig7bha4al"/>-->
       <property name="URL" value="jdbc:postgresql://ec2-18-233-83-165.compute-1.amazonaws.com:5432/d4sh0ig7bha4al"/>
       <property name="User" value="qlazmticxjljxx"/>
-      <property name="Password" value="3e8f50d3311d22d59777eaf761391336cd7da68a09e0138071b957897a445e6c?sslmode=require"/>
+      <property name="Password" value="3e8f50d3311d22d59777eaf761391336cd7da68a09e0138071b957897a445e6c"/>
       <property name="serverName" value="ec2-18-233-83-165.compute-1.amazonaws.com"/>   
       <property name="databaseName" value="d4sh0ig7bha4al"/>
       <property name="portNumber" value="5432"/>
