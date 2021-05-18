@@ -6,6 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -44,8 +45,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Material.findByMatCorriente", query = "SELECT m FROM Material m WHERE m.matCorriente = :matCorriente")
     , @NamedQuery(name = "Material.findByMatPotencia", query = "SELECT m FROM Material m WHERE m.matPotencia = :matPotencia")
     , @NamedQuery(name = "Material.findByMatCompatibilidad", query = "SELECT m FROM Material m WHERE m.matCompatibilidad = :matCompatibilidad")
-    , @NamedQuery(name = "Material.findByMatTipoconexion", query = "SELECT m FROM Material m WHERE m.matTipoconexion = :matTipoconexion")})
+    , @NamedQuery(name = "Material.findByMatTipoconexion", query = "SELECT m FROM Material m WHERE m.matTipoconexion = :matTipoconexion")
+    , @NamedQuery(name = "Material.findByMatImagen", query = "SELECT m FROM Material m WHERE m.matImagen = :matImagen")})
 public class Material implements Serializable {
+
+    @OneToMany(mappedBy = "matId")
+    private Collection<Materialkit> materialkitCollection;
+    @OneToMany(mappedBy = "matId")
+    private Collection<Materialservicio> materialservicioCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -59,7 +66,7 @@ public class Material implements Serializable {
     private String matNombre;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "mat_precio")
-    private Double matPrecio;
+    private BigDecimal matPrecio;
     @Size(max = 50)
     @Column(name = "mat_marca")
     private String matMarca;
@@ -83,9 +90,9 @@ public class Material implements Serializable {
     @Size(max = 25)
     @Column(name = "mat_tipoconexion")
     private String matTipoconexion;
-    @Lob
+    @Size(max = 500)
     @Column(name = "mat_imagen")
-    private byte[] matImagen;
+    private String matImagen;
     @OneToMany(mappedBy = "matId")
     private Collection<Ordenmaterial> ordenmaterialCollection;
     @OneToMany(mappedBy = "matId")
@@ -119,11 +126,11 @@ public class Material implements Serializable {
         this.matNombre = matNombre;
     }
 
-    public Double getMatPrecio() {
+    public BigDecimal getMatPrecio() {
         return matPrecio;
     }
 
-    public void setMatPrecio(Double matPrecio) {
+    public void setMatPrecio(BigDecimal matPrecio) {
         this.matPrecio = matPrecio;
     }
 
@@ -199,11 +206,11 @@ public class Material implements Serializable {
         this.matTipoconexion = matTipoconexion;
     }
 
-    public byte[] getMatImagen() {
+    public String getMatImagen() {
         return matImagen;
     }
 
-    public void setMatImagen(byte[] matImagen) {
+    public void setMatImagen(String matImagen) {
         this.matImagen = matImagen;
     }
 
@@ -265,6 +272,24 @@ public class Material implements Serializable {
     @Override
     public String toString() {
         return "entidades.Material[ matId=" + matId + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Materialkit> getMaterialkitCollection() {
+        return materialkitCollection;
+    }
+
+    public void setMaterialkitCollection(Collection<Materialkit> materialkitCollection) {
+        this.materialkitCollection = materialkitCollection;
+    }
+
+    @XmlTransient
+    public Collection<Materialservicio> getMaterialservicioCollection() {
+        return materialservicioCollection;
+    }
+
+    public void setMaterialservicioCollection(Collection<Materialservicio> materialservicioCollection) {
+        this.materialservicioCollection = materialservicioCollection;
     }
     
 }

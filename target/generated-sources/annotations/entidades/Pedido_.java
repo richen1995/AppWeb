@@ -3,18 +3,20 @@ package entidades;
 import entidades.Cliente;
 import entidades.Profpedido;
 import entidades.Servicio;
+import entidades.Serviciopedido;
 import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-04-02T18:28:54")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-05-18T11:20:56")
 @StaticMetamodel(Pedido.class)
 public class Pedido_ { 
 
     public static volatile CollectionAttribute<Pedido, Servicio> servicioCollection;
     public static volatile SingularAttribute<Pedido, Integer> pedId;
+    public static volatile CollectionAttribute<Pedido, Serviciopedido> serviciopedidoCollection;
     public static volatile CollectionAttribute<Pedido, Profpedido> profpedidoCollection;
     public static volatile SingularAttribute<Pedido, Date> pedFecha;
     public static volatile SingularAttribute<Pedido, Boolean> pedEstado;

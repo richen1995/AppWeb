@@ -31,13 +31,17 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(servicePer.ws.class);
         resources.add(servicios.ActividadFacadeREST.class);
+        resources.add(servicios.ActividadservicioFacadeREST.class);
         resources.add(servicios.CatalogoFacadeREST.class);
         resources.add(servicios.CiudadFacadeREST.class);
         resources.add(servicios.ClienteFacadeREST.class);
         resources.add(servicios.ClienteprobableFacadeREST.class);
         resources.add(servicios.CotizacionFacadeREST.class);
         resources.add(servicios.FacturaFacadeREST.class);
+        resources.add(servicios.KitFacadeREST.class);
         resources.add(servicios.MaterialFacadeREST.class);
+        resources.add(servicios.MaterialkitFacadeREST.class);
+        resources.add(servicios.MaterialservicioFacadeREST.class);
         resources.add(servicios.OrdenmaterialFacadeREST.class);
         resources.add(servicios.OrdentrabajoFacadeREST.class);
         resources.add(servicios.PedidoFacadeREST.class);
@@ -49,6 +53,7 @@ public class ApplicationConfig extends Application {
         resources.add(servicios.ProfservicioFacadeREST.class);
         resources.add(servicios.ProvinciaFacadeREST.class);
         resources.add(servicios.ServicioFacadeREST.class);
+        resources.add(servicios.ServiciopedidoFacadeREST.class);
         resources.add(servicios.SugerenciaFacadeREST.class);
         resources.add(servicios.TipopagoFacadeREST.class);
         resources.add(servicios.UsuarioFacadeREST.class);

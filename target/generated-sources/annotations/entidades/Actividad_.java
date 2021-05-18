@@ -1,5 +1,6 @@
 package entidades;
 
+import entidades.Actividadservicio;
 import entidades.Cliente;
 import entidades.Ordentrabajo;
 import entidades.Profactividad;
@@ -11,11 +12,12 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-04-02T18:28:54")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-05-18T11:20:56")
 @StaticMetamodel(Actividad.class)
 public class Actividad_ { 
 
     public static volatile CollectionAttribute<Actividad, Servicio> servicioCollection;
+    public static volatile CollectionAttribute<Actividad, Actividadservicio> actividadservicioCollection;
     public static volatile SingularAttribute<Actividad, Double> actCostomanoobra;
     public static volatile SingularAttribute<Actividad, Boolean> actEstado;
     public static volatile SingularAttribute<Actividad, Integer> actId;

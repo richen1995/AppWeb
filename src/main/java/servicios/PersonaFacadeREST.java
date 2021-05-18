@@ -41,7 +41,7 @@ public class PersonaFacadeREST extends AbstractFacade<Persona> {
     @Produces({"application/json; charset=utf-8"})
 //    public z create(Persona entity) {
     public void create(Persona entity) {
-                super.create(entity);
+        super.create(entity);
 //        try {
 //            super.create(entity);
 //            em.flush();

@@ -46,7 +46,7 @@ public class CiudadFacade extends AbstractFacade<Ciudad> implements CiudadFacade
             if (!listaCiudad.isEmpty()) {
                 System.out.println("Se ha producido un error en la conulta");
 //                listaCiudad = listaCiudad.get(0);
-            }
+}
         } catch (Exception e) {
         }
         return listaCiudad;

@@ -43,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Pedido.findByPedEstado", query = "SELECT p FROM Pedido p WHERE p.pedEstado = :pedEstado")})
 public class Pedido implements Serializable {
 
+    @OneToMany(mappedBy = "pedId")
+    private Collection<Serviciopedido> serviciopedidoCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -156,6 +159,15 @@ public class Pedido implements Serializable {
     @Override
     public String toString() {
         return "entidades.Pedido[ pedId=" + pedId + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Serviciopedido> getServiciopedidoCollection() {
+        return serviciopedidoCollection;
+    }
+
+    public void setServiciopedidoCollection(Collection<Serviciopedido> serviciopedidoCollection) {
+        this.serviciopedidoCollection = serviciopedidoCollection;
     }
     
 }

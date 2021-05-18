@@ -6,8 +6,10 @@
 package servicePer;
 
 import ejb.CiudadFacadeLocal;
+import ejb.ServicioFacadeLocal;
 import ejb.UsuarioFacadeLocal;
 import entidades.Ciudad;
+import entidades.Servicio;
 import entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,9 @@ public class ws {
     
     @EJB
     private CiudadFacadeLocal ciudad;
+    
+    @EJB
+    private ServicioFacadeLocal servicio;
     
     @GET
     @Path("sessionusuario/{email}/{password}")
@@ -63,5 +68,21 @@ public class ws {
             return listCiudad;
         }
     } 
-    
+        
+    //Consultar servicios con estado true    
+    @GET
+    @Path("servicioshabilitados")
+    @Produces({"application/json; charset=utf-8"})
+    @Consumes({"application/json; charset=utf-8"})
+        public List<Servicio> servioshabilitados() {
+        List<Servicio> listServicio = null;
+        try {
+            listServicio = servicio.obtenerserviciosactivos();
+            return listServicio;
+        } catch (Exception e) {
+            listServicio = null;
+            return listServicio;
+        }
+    } 
+        
 }

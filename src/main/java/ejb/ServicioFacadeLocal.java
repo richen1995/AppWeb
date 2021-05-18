@@ -30,4 +30,6 @@ public interface ServicioFacadeLocal {
 
     int count();
     
+    //obtener solo ciudades activas con TRUE
+    List<Servicio> obtenerserviciosactivos();
 }
