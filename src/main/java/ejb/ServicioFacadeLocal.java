@@ -32,4 +32,7 @@ public interface ServicioFacadeLocal {
     
     //obtener solo ciudades activas con TRUE
     List<Servicio> obtenerserviciosactivos();
+    
+    //obtener servicios por prioridad
+    List<Servicio> obtenerservicioporprioridad();
 }

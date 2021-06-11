@@ -30,4 +30,5 @@ public interface KitFacadeLocal {
 
     int count();
     
+    List<Kit> obtenerkitsdeservicio(String codigosrv);
 }

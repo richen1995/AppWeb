@@ -15,12 +15,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -48,11 +48,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Material.findByMatTipoconexion", query = "SELECT m FROM Material m WHERE m.matTipoconexion = :matTipoconexion")
     , @NamedQuery(name = "Material.findByMatImagen", query = "SELECT m FROM Material m WHERE m.matImagen = :matImagen")})
 public class Material implements Serializable {
-
-    @OneToMany(mappedBy = "matId")
-    private Collection<Materialkit> materialkitCollection;
-    @OneToMany(mappedBy = "matId")
-    private Collection<Materialservicio> materialservicioCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -93,6 +88,13 @@ public class Material implements Serializable {
     @Size(max = 500)
     @Column(name = "mat_imagen")
     private String matImagen;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 8)
+    @Column(name = "mat_codcustom")
+    private String matCodcustom;
+    @OneToMany(mappedBy = "matId")
+    private Collection<Materialkit> materialkitCollection;
     @OneToMany(mappedBy = "matId")
     private Collection<Ordenmaterial> ordenmaterialCollection;
     @OneToMany(mappedBy = "matId")
@@ -102,6 +104,8 @@ public class Material implements Serializable {
     private Catalogo catId;
     @OneToMany(mappedBy = "matId")
     private Collection<Ventamaterial> ventamaterialCollection;
+    @OneToMany(mappedBy = "matId")
+    private Collection<Materialservicio> materialservicioCollection;
 
     public Material() {
     }
@@ -213,6 +217,23 @@ public class Material implements Serializable {
     public void setMatImagen(String matImagen) {
         this.matImagen = matImagen;
     }
+    
+    public String getMatCodcustom() {
+        return matCodcustom;
+    }
+
+    public void setMatCodcustom(String matCodcustom) {
+        this.matCodcustom = matCodcustom;
+    }
+
+    @XmlTransient
+    public Collection<Materialkit> getMaterialkitCollection() {
+        return materialkitCollection;
+    }
+
+    public void setMaterialkitCollection(Collection<Materialkit> materialkitCollection) {
+        this.materialkitCollection = materialkitCollection;
+    }
 
     @XmlTransient
     public Collection<Ordenmaterial> getOrdenmaterialCollection() {
@@ -249,6 +270,15 @@ public class Material implements Serializable {
         this.ventamaterialCollection = ventamaterialCollection;
     }
 
+    @XmlTransient
+    public Collection<Materialservicio> getMaterialservicioCollection() {
+        return materialservicioCollection;
+    }
+
+    public void setMaterialservicioCollection(Collection<Materialservicio> materialservicioCollection) {
+        this.materialservicioCollection = materialservicioCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -272,24 +302,6 @@ public class Material implements Serializable {
     @Override
     public String toString() {
         return "entidades.Material[ matId=" + matId + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Materialkit> getMaterialkitCollection() {
-        return materialkitCollection;
-    }
-
-    public void setMaterialkitCollection(Collection<Materialkit> materialkitCollection) {
-        this.materialkitCollection = materialkitCollection;
-    }
-
-    @XmlTransient
-    public Collection<Materialservicio> getMaterialservicioCollection() {
-        return materialservicioCollection;
-    }
-
-    public void setMaterialservicioCollection(Collection<Materialservicio> materialservicioCollection) {
-        this.materialservicioCollection = materialservicioCollection;
     }
     
 }

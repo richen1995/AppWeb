@@ -30,4 +30,5 @@ public interface ProfservicioFacadeLocal {
 
     int count();
     
+    List<Profservicio> obtenerprofesionalesdeservicio(String codservicio);
 }

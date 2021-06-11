@@ -12,7 +12,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-05-18T11:20:56")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-06-10T20:43:55")
 @StaticMetamodel(Material.class)
 public class Material_ { 
 
@@ -24,12 +24,13 @@ public class Material_ {
     public static volatile SingularAttribute<Material, BigDecimal> matPrecio;
     public static volatile SingularAttribute<Material, String> matDescripcion;
     public static volatile SingularAttribute<Material, String> matCompatibilidad;
+    public static volatile SingularAttribute<Material, String> matCodcustom;
     public static volatile CollectionAttribute<Material, Viscotmaterial> viscotmaterialCollection;
     public static volatile SingularAttribute<Material, String> matColor;
     public static volatile SingularAttribute<Material, Catalogo> catId;
-    public static volatile CollectionAttribute<Material, Materialservicio> materialservicioCollection;
     public static volatile SingularAttribute<Material, Double> matCorriente;
     public static volatile SingularAttribute<Material, String> matImagen;
+    public static volatile CollectionAttribute<Material, Materialservicio> materialservicioCollection;
     public static volatile SingularAttribute<Material, String> matId;
     public static volatile SingularAttribute<Material, String> matNombre;
     public static volatile SingularAttribute<Material, String> matTipoconexion;

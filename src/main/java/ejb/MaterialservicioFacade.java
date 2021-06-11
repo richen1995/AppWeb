@@ -6,9 +6,13 @@
 package ejb;
 
 import entidades.Materialservicio;
+import entidades.Servicio;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +33,24 @@ public class MaterialservicioFacade extends AbstractFacade<Materialservicio> imp
         super(Materialservicio.class);
     }
     
+    @Override
+    public List<Materialservicio> obtenermaterialesdeservicio(String codigosrv)
+    {
+        List<Materialservicio> listmaterialsrv = new ArrayList<Materialservicio>();
+        String consultaSQL = null;
+        try{
+            consultaSQL = "SELECT m FROM Materialservicio m WHERE m.srvId = :codsrv";
+            Servicio servicio = new Servicio();
+            servicio.setSrvId(codigosrv);
+            Query query = em.createQuery(consultaSQL);
+            query.setParameter("codsrv",servicio);
+            listmaterialsrv = query.getResultList();
+            if (!listmaterialsrv.isEmpty()) 
+                System.out.println("La cadena de consulta esta vacia");
+        }catch(Exception e){
+            System.out.println("Consulta Fallidad");
+            System.out.println("ERROR: " + e);
+        }
+        return listmaterialsrv;
+    }
 }

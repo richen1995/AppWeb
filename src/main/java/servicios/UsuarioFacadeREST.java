@@ -72,7 +72,7 @@ public class UsuarioFacadeREST extends AbstractFacade<Usuario> {
 
     @GET
     @Path("{from}/{to}")
-    @Produces({"application/json; charset=utf-8"})
+        @Produces({"application/json; charset=utf-8"})
     public List<Usuario> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }

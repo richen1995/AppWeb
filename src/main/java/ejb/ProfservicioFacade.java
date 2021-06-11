@@ -6,9 +6,14 @@
 package ejb;
 
 import entidades.Profservicio;
+import entidades.Profservicio;
+import entidades.Servicio;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +34,24 @@ public class ProfservicioFacade extends AbstractFacade<Profservicio> implements 
         super(Profservicio.class);
     }
     
+    @Override
+    public List<Profservicio> obtenerprofesionalesdeservicio(String codigosrv){
+        List<Profservicio> listprofservicio = new ArrayList<Profservicio>();
+        String consultaSQL = null;
+        try{
+            consultaSQL = "SELECT m FROM Profservicio m WHERE m.srvId = :codsrv";
+            Servicio servicio = new Servicio();
+            servicio.setSrvId(codigosrv);
+            Query query = em.createQuery(consultaSQL);
+            query.setParameter("codsrv",servicio);
+            listprofservicio = query.getResultList();
+            if (!listprofservicio.isEmpty()) 
+                System.out.println("La cadena de consulta esta vacia");
+        }catch(Exception e){
+            System.out.println("Consulta Fallidad");
+            System.out.println("ERROR: " + e);
+        }
+        return listprofservicio;
+    
+    }
 }

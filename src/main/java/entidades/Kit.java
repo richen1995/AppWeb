@@ -6,6 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -48,7 +49,10 @@ public class Kit implements Serializable {
     private String kitMateriales;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "kit_precio")
-    private Double kitPrecio;
+    private BigDecimal kitPrecio;
+    @Size(max = 500)
+    @Column(name = "kit_imagen")
+    private String kitImagen;
     @OneToMany(mappedBy = "kitId")
     private Collection<Materialkit> materialkitCollection;
     @JoinColumn(name = "srv_id", referencedColumnName = "srv_id")
@@ -78,14 +82,22 @@ public class Kit implements Serializable {
         this.kitMateriales = kitMateriales;
     }
 
-    public Double getKitPrecio() {
+    public BigDecimal getKitPrecio() {
         return kitPrecio;
     }
 
-    public void setKitPrecio(Double kitPrecio) {
+    public void setKitPrecio(BigDecimal kitPrecio) {
         this.kitPrecio = kitPrecio;
     }
 
+    public String getKitImagen() {
+        return kitImagen;
+    }
+
+    public void setKitImagen(String kitImagen) {
+        this.kitImagen = kitImagen;
+    }
+    
     @XmlTransient
     public Collection<Materialkit> getMaterialkitCollection() {
         return materialkitCollection;

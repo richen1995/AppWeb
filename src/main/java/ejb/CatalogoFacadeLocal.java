@@ -30,4 +30,5 @@ public interface CatalogoFacadeLocal {
 
     int count();
     
+    Catalogo obtenerCatalogo (String catalogo); //obtener catalogo por el codigo que es String  
 }

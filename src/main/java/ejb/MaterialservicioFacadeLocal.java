@@ -30,4 +30,5 @@ public interface MaterialservicioFacadeLocal {
 
     int count();
     
+    List<Materialservicio> obtenermaterialesdeservicio(String codigosrv);
 }

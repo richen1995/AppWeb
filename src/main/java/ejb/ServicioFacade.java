@@ -32,12 +32,30 @@ public class ServicioFacade extends AbstractFacade<Servicio> implements Servicio
         super(Servicio.class);
     }
     
-        @Override
+    @Override
     public List<Servicio> obtenerserviciosactivos(){
         List<Servicio> listServicio = new ArrayList<Servicio>();
         String consulta = null;
         try{
             consulta = "SELECT s FROM Servicio s WHERE s.srvEstado = true";
+            Query query = em.createQuery(consulta);
+            listServicio = query.getResultList();
+            if (!listServicio.isEmpty()) 
+                System.out.println("La cadena de consulta esta vacia");
+        }catch(Exception e){
+            System.out.println("Consulta Fallidad");
+            System.out.println("ERROR: " + e);
+        }
+        return listServicio;
+    }
+    
+    @Override
+    public List<Servicio> obtenerservicioporprioridad(){
+        List<Servicio> listServicio = new ArrayList<Servicio>();
+        String consulta = null;
+        try{
+            //consulta = "SELECT s FROM Servicio s WHERE s.srvEstado = true";
+            consulta = "SELECT s FROM Servicio s WHERE s.srvEstado = true ORDER BY s.srvPrioridad";
             Query query = em.createQuery(consulta);
             listServicio = query.getResultList();
             if (!listServicio.isEmpty()) 

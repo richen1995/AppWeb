@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Richard
  */
 @Stateless
-@Path("entidades.profservicio")
+@Path("profservicio")
 public class ProfservicioFacadeREST extends AbstractFacade<Profservicio> {
 
     @PersistenceContext(unitName = "com.mycompany_luxAD_war_1.0-SNAPSHOTPU")
@@ -36,15 +36,16 @@ public class ProfservicioFacadeREST extends AbstractFacade<Profservicio> {
     }
 
     @POST
-    @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+        //@Override
+    @Consumes({"application/json; charset=utf-8"})
+    @Produces({"application/json; charset=utf-8"})
     public void create(Profservicio entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({"application/json; charset=utf-8"})
     public void edit(@PathParam("id") Integer id, Profservicio entity) {
         super.edit(entity);
     }
@@ -57,21 +58,21 @@ public class ProfservicioFacadeREST extends AbstractFacade<Profservicio> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+     @Produces({"application/json; charset=utf-8"})
     public Profservicio find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({"application/json; charset=utf-8"})
     public List<Profservicio> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({"application/json; charset=utf-8"})
     public List<Profservicio> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }

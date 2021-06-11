@@ -39,8 +39,17 @@ public class MaterialFacadeREST extends AbstractFacade<Material> {
         //@Override
     @Consumes({"application/json; charset=utf-8"})
     @Produces({"application/json; charset=utf-8"})
-    public void create(Material entity) {
-        super.create(entity);
+    public Material insertar(Material entity) {
+        //super.create(entity);
+                try {
+            super.create(entity);
+            em.flush();
+            return entity;
+        } catch (Exception e) {
+            System.out.println("" + e);
+            entity =null;
+            return entity;
+        }
     }
 
     @PUT

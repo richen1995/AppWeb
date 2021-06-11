@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Servicio.findAll", query = "SELECT s FROM Servicio s")
     , @NamedQuery(name = "Servicio.findBySrvId", query = "SELECT s FROM Servicio s WHERE s.srvId = :srvId")
     , @NamedQuery(name = "Servicio.findBySrvNombre", query = "SELECT s FROM Servicio s WHERE s.srvNombre = :srvNombre")
-    , @NamedQuery(name = "Servicio.findBySrvEstado", query = "SELECT s FROM Servicio s WHERE s.srvEstado = :srvEstado")})
+    , @NamedQuery(name = "Servicio.findBySrvEstado", query = "SELECT s FROM Servicio s WHERE s.srvEstado = :srvEstado")
+    , @NamedQuery(name = "Servicio.findBySrvImgmovil", query = "SELECT s FROM Servicio s WHERE s.srvImgmovil = :srvImgmovil")
+    , @NamedQuery(name = "Servicio.findBySrvPrioridad", query = "SELECT s FROM Servicio s WHERE s.srvPrioridad = :srvPrioridad")})
 public class Servicio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,6 +49,11 @@ public class Servicio implements Serializable {
     private String srvNombre;
     @Column(name = "srv_estado")
     private Boolean srvEstado;
+    @Size(max = 500)
+    @Column(name = "srv_imgmovil")
+    private String srvImgmovil;
+    @Column(name = "srv_prioridad")
+    private Integer srvPrioridad;
     @OneToMany(mappedBy = "srvId")
     private Collection<Profservicio> profservicioCollection;
     @OneToMany(mappedBy = "srvId")
@@ -57,7 +64,7 @@ public class Servicio implements Serializable {
     private Collection<Serviciopedido> serviciopedidoCollection;
     @OneToMany(mappedBy = "srvId")
     private Collection<Materialservicio> materialservicioCollection;
-    
+
     public Servicio() {
     }
 
@@ -87,6 +94,22 @@ public class Servicio implements Serializable {
 
     public void setSrvEstado(Boolean srvEstado) {
         this.srvEstado = srvEstado;
+    }
+
+    public String getSrvImgmovil() {
+        return srvImgmovil;
+    }
+
+    public void setSrvImgmovil(String srvImgmovil) {
+        this.srvImgmovil = srvImgmovil;
+    }
+    
+    public Integer getSrvPrioridad() {
+        return srvPrioridad;
+    }
+
+    public void setSrvPrioridad(Integer srvPrioridad) {
+        this.srvPrioridad = srvPrioridad;
     }
 
     @XmlTransient
@@ -133,7 +156,7 @@ public class Servicio implements Serializable {
     public void setMaterialservicioCollection(Collection<Materialservicio> materialservicioCollection) {
         this.materialservicioCollection = materialservicioCollection;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;

@@ -15,8 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -43,9 +41,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Pedido.findByPedEstado", query = "SELECT p FROM Pedido p WHERE p.pedEstado = :pedEstado")})
 public class Pedido implements Serializable {
 
-    @OneToMany(mappedBy = "pedId")
-    private Collection<Serviciopedido> serviciopedidoCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,16 +55,13 @@ public class Pedido implements Serializable {
     private Date pedFecha;
     @Column(name = "ped_estado")
     private Boolean pedEstado;
-    @JoinTable(name = "serviciopedido", joinColumns = {
-        @JoinColumn(name = "ped_id", referencedColumnName = "ped_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "srv_id", referencedColumnName = "srv_id")})
-    @ManyToMany
-    private Collection<Servicio> servicioCollection;
     @OneToMany(mappedBy = "pedId")
     private Collection<Profpedido> profpedidoCollection;
     @JoinColumn(name = "cli_id", referencedColumnName = "cli_id")
     @ManyToOne
     private Cliente cliId;
+    @OneToMany(mappedBy = "pedId")
+    private Collection<Serviciopedido> serviciopedidoCollection;
 
     public Pedido() {
     }
@@ -111,15 +103,6 @@ public class Pedido implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Servicio> getServicioCollection() {
-        return servicioCollection;
-    }
-
-    public void setServicioCollection(Collection<Servicio> servicioCollection) {
-        this.servicioCollection = servicioCollection;
-    }
-
-    @XmlTransient
     public Collection<Profpedido> getProfpedidoCollection() {
         return profpedidoCollection;
     }
@@ -134,6 +117,15 @@ public class Pedido implements Serializable {
 
     public void setCliId(Cliente cliId) {
         this.cliId = cliId;
+    }
+
+    @XmlTransient
+    public Collection<Serviciopedido> getServiciopedidoCollection() {
+        return serviciopedidoCollection;
+    }
+
+    public void setServiciopedidoCollection(Collection<Serviciopedido> serviciopedidoCollection) {
+        this.serviciopedidoCollection = serviciopedidoCollection;
     }
 
     @Override
@@ -159,15 +151,6 @@ public class Pedido implements Serializable {
     @Override
     public String toString() {
         return "entidades.Pedido[ pedId=" + pedId + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Serviciopedido> getServiciopedidoCollection() {
-        return serviciopedidoCollection;
-    }
-
-    public void setServiciopedidoCollection(Collection<Serviciopedido> serviciopedidoCollection) {
-        this.serviciopedidoCollection = serviciopedidoCollection;
     }
     
 }

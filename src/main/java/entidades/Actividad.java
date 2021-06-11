@@ -15,8 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -47,9 +45,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Actividad.findByActEstado", query = "SELECT a FROM Actividad a WHERE a.actEstado = :actEstado")})
 public class Actividad implements Serializable {
 
-    @OneToMany(mappedBy = "actId")
-    private Collection<Actividadservicio> actividadservicioCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,16 +71,13 @@ public class Actividad implements Serializable {
     private String actTipo;
     @Column(name = "act_estado")
     private Boolean actEstado;
-    @JoinTable(name = "actividadservicio", joinColumns = {
-        @JoinColumn(name = "act_id", referencedColumnName = "act_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "srv_id", referencedColumnName = "srv_id")})
-    @ManyToMany
-    private Collection<Servicio> servicioCollection;
     @OneToMany(mappedBy = "actId")
     private Collection<Profactividad> profactividadCollection;
     @JoinColumn(name = "cli_id", referencedColumnName = "cli_id")
     @ManyToOne
     private Cliente cliId;
+    @OneToMany(mappedBy = "actId")
+    private Collection<Actividadservicio> actividadservicioCollection;
     @OneToMany(mappedBy = "actId")
     private Collection<Visita> visitaCollection;
     @OneToMany(mappedBy = "actId")
@@ -163,15 +155,6 @@ public class Actividad implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Servicio> getServicioCollection() {
-        return servicioCollection;
-    }
-
-    public void setServicioCollection(Collection<Servicio> servicioCollection) {
-        this.servicioCollection = servicioCollection;
-    }
-
-    @XmlTransient
     public Collection<Profactividad> getProfactividadCollection() {
         return profactividadCollection;
     }
@@ -186,6 +169,15 @@ public class Actividad implements Serializable {
 
     public void setCliId(Cliente cliId) {
         this.cliId = cliId;
+    }
+
+    @XmlTransient
+    public Collection<Actividadservicio> getActividadservicioCollection() {
+        return actividadservicioCollection;
+    }
+
+    public void setActividadservicioCollection(Collection<Actividadservicio> actividadservicioCollection) {
+        this.actividadservicioCollection = actividadservicioCollection;
     }
 
     @XmlTransient
@@ -229,15 +221,6 @@ public class Actividad implements Serializable {
     @Override
     public String toString() {
         return "entidades.Actividad[ actId=" + actId + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Actividadservicio> getActividadservicioCollection() {
-        return actividadservicioCollection;
-    }
-
-    public void setActividadservicioCollection(Collection<Actividadservicio> actividadservicioCollection) {
-        this.actividadservicioCollection = actividadservicioCollection;
     }
     
 }

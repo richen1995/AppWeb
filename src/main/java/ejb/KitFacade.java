@@ -6,9 +6,13 @@
 package ejb;
 
 import entidades.Kit;
+import entidades.Servicio;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +33,24 @@ public class KitFacade extends AbstractFacade<Kit> implements KitFacadeLocal {
         super(Kit.class);
     }
     
+    @Override
+    public List<Kit> obtenerkitsdeservicio(String codigosrv){
+        List<Kit> listkit = new ArrayList<Kit>();
+        String consultaSQL = null;
+        try{
+            consultaSQL = "SELECT k FROM Kit k WHERE k.srvId = :codsrv";
+            Servicio servicio = new Servicio();
+            servicio.setSrvId(codigosrv);
+            Query query = em.createQuery(consultaSQL);
+            query.setParameter("codsrv",servicio);
+            listkit = query.getResultList();
+            if (!listkit.isEmpty()) 
+                System.out.println("La cadena de consulta esta vacia");
+        }catch(Exception e){
+            System.out.println("Consulta Fallidad");
+            System.out.println("ERROR: " + e);
+        }
+        
+        return listkit;
+    }  
 }
